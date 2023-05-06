@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Rn_Starter.app"
-               BlueprintName = "Rn Starter"
-               ReferencedContainer = "container:Rn_Starter.xcodeproj">
+               BuildableName = "RN_Chatter.app"
+               BlueprintName = "RN Chatter"
+               ReferencedContainer = "container:RN_Chatter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "Rn_StarterTests.xctest"
-               BlueprintName = "Rn_StarterTests"
-               ReferencedContainer = "container:Rn_Starter.xcodeproj">
+               BuildableName = "RN_ChatterTests.xctest"
+               BlueprintName = "RN_ChatterTests"
+               ReferencedContainer = "container:RN_Chatter.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Rn_Starter.app"
-            BlueprintName = "Rn Starter"
-            ReferencedContainer = "container:Rn_Starter.xcodeproj">
+            BuildableName = "RN_Chatter.app"
+            BlueprintName = "RN Chatter"
+            ReferencedContainer = "container:RN_Chatter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Rn_Starter.app"
-            BlueprintName = "Rn Starter"
-            ReferencedContainer = "container:Rn_Starter.xcodeproj">
+            BuildableName = "RN_Chatter.app"
+            BlueprintName = "RN Chatter"
+            ReferencedContainer = "container:RN_Chatter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

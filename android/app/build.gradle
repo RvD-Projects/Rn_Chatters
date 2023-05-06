@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.rvdprojects.Rn_Starter"
+    namespace "com.rvdprojects.RN_Chatter"
     defaultConfig {
-        applicationId "com.rvdprojects.Rn_Starter"
+        applicationId "com.rvdprojects.RN_Chatter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

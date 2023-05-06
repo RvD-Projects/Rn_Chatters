@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rn_Starter", "Rn_Starter\Rn_Starter.vcxproj", "{BB27B605-6A8A-42F4-98B1-EFA2A4308CC5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RN_Chatter", "RN_Chatter\RN_Chatter.vcxproj", "{BB27B605-6A8A-42F4-98B1-EFA2A4308CC5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F7D32BD0-2749-483E-9A0D-1635EF7E3136} = {F7D32BD0-2749-483E-9A0D-1635EF7E3136}
 	EndProjectSection

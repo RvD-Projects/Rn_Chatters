@@ -7,8 +7,8 @@
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{bb27b605-6a8a-42f4-98b1-efa2a4308cc5}</ProjectGuid>
-    <ProjectName>Rn_Starter</ProjectName>
-    <RootNamespace>Rn_Starter</RootNamespace>
+    <ProjectName>RN_Chatter</ProjectName>
+    <RootNamespace>RN_Chatter</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
