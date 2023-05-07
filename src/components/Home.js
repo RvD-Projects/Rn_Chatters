@@ -21,7 +21,7 @@ const Home = (props) => {
 };
 
 const mapDispatchToProps = {
-    setError
+  setError
 };
 
 export default connect(null, mapDispatchToProps)(Home);

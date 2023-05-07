@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import DropdownAlert from "react-native-dropdownalert";
 import { AppNotifications } from "../helpers/Notifications";
 
-const ScreenNotification = (props) => {
+const AppScreenNotification = (props) => {
   const dispatch = useDispatch();
   const msg = useSelector((state) => state.screenNotificationReducer.msg);
   const type = useSelector((state) => state.screenNotificationReducer.type);
@@ -61,4 +61,4 @@ const ScreenNotification = (props) => {
   return render();
 };
 
-export default ScreenNotification;
+export default AppScreenNotification;

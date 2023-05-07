@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { store } from "./src/store/store";
 import Home from "./src/components/Home";
-import ScreenNotification from "./src/components/ScreenNotification";
+import AppScreenNotification from "./src/components/AppScreenNotification";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <NavigationContainer>
         <Home/>
       </NavigationContainer>
-      <ScreenNotification/>
+      <AppScreenNotification/>
     </Provider>
   );
 }
