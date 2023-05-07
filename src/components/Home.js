@@ -15,7 +15,7 @@ const Home = (props) => {
 
   return (
     <View>
-      <Text>{APP_NAME}</Text>
+      <Text>{APP_NAME}: This is the home view</Text>
     </View>
   );
 };
