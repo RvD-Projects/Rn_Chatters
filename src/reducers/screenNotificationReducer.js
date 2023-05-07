@@ -5,10 +5,13 @@ const initialState = {
   type: null,
   title: null,
   msg: null,
-  useNotifications: false,
+  useAppNotification: false,
 };
 
-export const setError = createAction(
+export const setError = (error) => (dispatch) =>
+  dispatch(setErrorAction(error));
+
+const setErrorAction = createAction(
   "screenNotification/setError",
   function prepare(newState) {
     return {
@@ -20,15 +23,15 @@ export const setError = createAction(
 export const ScreenNotificationReducer = createReducer(
   initialState,
   (builder) => {
-    builder.addCase(setError, (state, action) => {
-      const { isOpen, type, title, msg, useNotifications } = action.payload;
+    builder.addCase(setErrorAction, (state, action) => {
+      const { isOpen, type, title, msg, useAppNotification } = action.payload;
       return {
         ...state,
         isOpen: isOpen,
         type: type,
         title: title,
         msg: msg,
-        useNotifications: useNotifications,
+        useAppNotification: useAppNotification,
       };
     });
   }

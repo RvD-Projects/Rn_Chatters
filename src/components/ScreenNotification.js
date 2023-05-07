@@ -1,5 +1,3 @@
-// ErrorNotification.jsx
-
 import React, { createRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DropdownAlert from "react-native-dropdownalert";
@@ -11,15 +9,17 @@ const ScreenNotification = (props) => {
   const type = useSelector((state) => state.screenNotificationReducer.type);
   const title = useSelector((state) => state.screenNotificationReducer.title);
   const isOpen = useSelector((state) => state.screenNotificationReducer.isOpen);
-  const useNotifications = useSelector((state) => state.screenNotificationReducer.useNotifications);
+  const useAppNotification = useSelector(
+    (state) => state.screenNotificationReducer.useAppNotification
+  );
 
   const notification = {
     msg: msg,
     type: type,
     title: title,
     isOpen: isOpen,
-    useNotifications: useNotifications
-  }
+    useAppNotification: useAppNotification,
+  };
 
   let dropDownAlertRef = createRef();
 
@@ -36,7 +36,7 @@ const ScreenNotification = (props) => {
       return;
     }
 
-    if(useNotifications) {
+    if (useAppNotification) {
       AppNotifications.local(notification, 10000);
     }
 
@@ -48,12 +48,14 @@ const ScreenNotification = (props) => {
       return;
     }
 
-    return <DropdownAlert 
-      showCancel={true}
-      closeInterval={30000}
-      messageNumOfLines={8}
-      ref={(ref) => (dropDownAlertRef = ref)}
-    />;
+    return (
+      <DropdownAlert
+        showCancel={true}
+        closeInterval={30000}
+        messageNumOfLines={8}
+        ref={(ref) => (dropDownAlertRef = ref)}
+      />
+    );
   }
 
   return render();

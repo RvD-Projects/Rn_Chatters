@@ -1,5 +1,5 @@
-import { CounterReducer } from "./counterReducer";
-import { ScreenNotificationReducer } from "./screenNotificationReducer";
+import { CounterReducer } from "./CounterReducer";
+import { ScreenNotificationReducer } from "./ScreenNotificationReducer";
 
 const reducers = {
   counterReducer: CounterReducer,
