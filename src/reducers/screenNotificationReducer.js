@@ -1,5 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { screenNotificationAction } from "../actions";
+import { createReducer, createAction } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
@@ -9,10 +8,19 @@ const initialState = {
   useNotifications: false,
 };
 
-export const screenNotificationReducer = createReducer(
+export const setError = createAction(
+  "screenNotification/setError",
+  function prepare(newState) {
+    return {
+      payload: { ...newState },
+    };
+  }
+);
+
+export const ScreenNotificationReducer = createReducer(
   initialState,
   (builder) => {
-    builder.addCase(screenNotificationAction.setError, (state, action) => {
+    builder.addCase(setError, (state, action) => {
       const { isOpen, type, title, msg, useNotifications } = action.payload;
       return {
         ...state,
