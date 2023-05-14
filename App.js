@@ -6,10 +6,12 @@ import RootNavigation from "./src/components/navigators/RootStack";
 
 function App() {
   return (
-    <Provider store={store}>
-      <RootNavigation/>
-      <AppScreenNotification/>
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <RootNavigation />
+        <AppScreenNotification />
+      </Provider>
+    </React.StrictMode>
   );
 }
 

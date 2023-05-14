@@ -1,0 +1,170 @@
+import { View } from "react-native";
+import { connect } from "react-redux";
+import { setError } from "../reducers/ScreenNotificationReducer";
+import { useNavigation } from "@react-navigation/native";
+import { Input, Icon, Button } from "@rneui/base";
+import { createRef, useEffect, useMemo, useState } from "react";
+import PropTypes from "prop-types";
+
+const Login = (props) => {
+  const navigation = useNavigation;
+
+  const mailRef = createRef();
+  const passRef = createRef();
+
+  const [formAsError, setFormAsError] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailMsg, setEmailMsg] = useState("");
+  const [passwordMsg, setPasswordMsg] = useState("");
+
+  const emailErrorMsg = "Please enter a valid email.";
+  const passErrorMsg = "Password must be at least 8 characters.";
+
+  const handleSubmit = (e) => {
+    // Auto-Login or default button disabled
+    if (!e) {
+      return;
+    }
+
+    console.log("Form values", [email, password]);
+    const notValid = validateForm(e, true);
+    if (notValid) {
+      return;
+    }
+
+    // hanlde-post
+  };
+
+  const validateEmail = (value, showError = false) => {
+    setEmailMsg("");
+    let asError = false;
+
+    if (value?.length < 3) {
+      showError && mailRef.current.shake();
+      showError && setEmailMsg(emailErrorMsg);
+      asError = true;
+    }
+
+    return asError;
+  };
+
+  const validatePassword = (value, showError = false) => {
+    setPasswordMsg("");
+    let asError = false;
+
+    if (value?.length < 8) {
+      showError && passRef.current.shake();
+      showError && setPasswordMsg(passErrorMsg);
+      asError = true;
+    }
+
+    return asError;
+  };
+
+  const validateForm = (e, showError = false) => {
+    const asError = validateEmail(email, showError) || validatePassword(password, showError);
+    setFormAsError(asError);
+    return asError;
+  };
+
+  const RenderFields = () => {
+    return (
+      <View>
+        <Input
+          ref={mailRef}
+          label="Email"
+          placeholder=""
+          containerStyle={{}}
+          disabledInputStyle={{ background: "#ddd" }}
+          inputContainerStyle={{}}
+          inputStyle={{}}
+          labelStyle={{}}
+          labelProps={{}}
+          rightIconContainerStyle={{}}
+          rightIcon={<Icon type="font-awesome" name="at" size={20} />}
+          errorProps={{}}
+          errorStyle={{ color: "red" }}
+          errorMessage={emailMsg}
+          secureTextEntry={false}
+          onChangeText={(value) => setEmail(value)}
+        />
+
+        <Input
+          ref={passRef}
+          label="Password"
+          placeholder=""
+          containerStyle={{}}
+          disabledInputStyle={{ background: "#ddd" }}
+          inputContainerStyle={{}}
+          inputStyle={{}}
+          labelStyle={{}}
+          labelProps={{}}
+          rightIconContainerStyle={{}}
+          rightIcon={<Icon type="font-awesome" name="lock" size={20} />}
+          errorProps={{}}
+          errorStyle={{ color: "red" }}
+          errorMessage={passwordMsg}
+          secureTextEntry={true}
+          onChangeText={(value) => setPassword(value)}
+        />
+      </View>
+    );
+  };
+
+  useEffect(() => {
+    handleSubmit();
+  }, []);
+
+  useEffect(() => {
+    const notValid = validateForm(null, false);
+    console.log("notValid", notValid);
+  }, [email, password]);
+
+  const render = () => {
+    return (
+      <View style={{ marginVertical: "25%" }}>
+        {RenderFields()}
+
+        <Button
+          disabled={formAsError}
+          title="Login"
+          titleProps={{}}
+          titleStyle={{ marginHorizontal: 8 }}
+          containerStyle={{ marginTop: 24 }}
+          buttonStyle={{
+            alignSelf: "center",
+            width: "50%",
+            borderWidth: 0,
+            borderRadius: 45,
+          }}
+          iconRight
+          icon={<Icon name="login" size={24} />}
+          loadingProps={{ animating: true }}
+          loadingStyle={{}}
+          onPress={(e) => handleSubmit(e)}
+        />
+      </View>
+    );
+  };
+
+  return render();
+};
+
+Login.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string,
+};
+
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps() {
+  return {
+    setError,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

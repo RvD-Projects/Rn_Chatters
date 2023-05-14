@@ -5,6 +5,8 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Home from "../Home";
+import Login from "../Login";
+import { Theme } from "../../styles/theme";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -25,6 +27,15 @@ function RootsTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="login" size={24} color="#900" />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -33,9 +44,6 @@ function RootsTabs() {
           ),
         }}
       />
-      <Tab.Screen name="Profile" component={Home} />
-      <Tab.Screen name="Settings" component={Home} />
-      <Tab.Screen name="Notifications" component={Home} />
     </Tab.Navigator>
   );
 }
@@ -54,7 +62,7 @@ function RootStack() {
 
 function RootNavigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={Theme}>
       <RootStack />
     </NavigationContainer>
   );
