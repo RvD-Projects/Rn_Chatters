@@ -1,5 +1,6 @@
 import { createReducer, createAction } from "@reduxjs/toolkit";
 import { AlertHelper } from "../helpers/Notifications/AlertHelpers";
+import { capitalizeAll } from "../helpers";
 
 const initialState = {
   isOpen: false,
@@ -28,7 +29,7 @@ export const NotificationsReducer = createReducer(initialState, (builder) => {
     payload.showOnScreen &&
       AlertHelper.show(
         payload.type,
-        payload.title ?? payload.type,
+        payload.title ?? capitalizeAll(payload.type),
         payload.message
       );
 
