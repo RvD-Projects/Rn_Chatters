@@ -46,7 +46,7 @@ function HomeTabs() {
           ),
         }}
       />
-    </Tab.Navigator>  
+    </Tab.Navigator>
   );
 }
 
