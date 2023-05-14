@@ -1,6 +1,6 @@
 import React from "react";
 import DropdownAlert from "react-native-dropdownalert";
-import { AlertHelper } from "../helpers/Notifications/AlertHelpers";
+import { AlertHelper } from "../helpers/notifications/AlertHelper";
 
 const AppScreenNotification = (props) => {
   return (

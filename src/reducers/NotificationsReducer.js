@@ -1,5 +1,5 @@
 import { createReducer, createAction } from "@reduxjs/toolkit";
-import { AlertHelper } from "../helpers/Notifications/AlertHelpers";
+import { AlertHelper } from "../helpers/notifications/AlertHelper";
 import { capitalizeAll } from "../helpers";
 
 const initialState = [];
