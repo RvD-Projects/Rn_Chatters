@@ -44,21 +44,27 @@ const Login = (props) => {
   };
 
   const doLogin = async () => {
+    props.updateStateUser({email});
     setIsPosting(true);
 
-    props.updateStateUser({
-      email,
+    props.sendNotification({
+      title: "Login request",
+      type: "socket-request",
+      message: `${email}`,
+      showOnScreen: false,
     });
+    
+    // response-mock
+    setTimeout(() => {
+      props.sendNotification({
+        title: "Login response",
+        type: "socket-response",
+        message: `${email}`,
+        showOnScreen: false,
+      });
+      setIsPosting(false);
+    }, 3000);
 
-    setTimeout(setIsPosting, 3000);
-
-    const notification = {
-      type: "success",
-      message: `Well looks like you've made it work, good job ${email}.`,
-      showOnScreen: true,
-    };
-
-    props.sendNotification(notification);
   };
 
   const validateEmail = (value, showError = false) => {

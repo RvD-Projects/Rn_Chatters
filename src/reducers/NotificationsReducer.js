@@ -9,6 +9,7 @@ const initialnotificationState = {
   title: null,
   message: null,
   showOnScreen: false,
+  time: null,
 };
 
 export const sendNotification = (notification) => (dispatch) =>
@@ -26,6 +27,7 @@ const sendNotificationAction = createAction(
 export const NotificationsReducer = createReducer(initialState, (builder) => {
   builder.addCase(sendNotificationAction, (state, action) => {
     const { payload } = action;
+    payload.time = payload.time ?? Date.now();
 
     payload.showOnScreen &&
       AlertHelper.show(
@@ -34,6 +36,8 @@ export const NotificationsReducer = createReducer(initialState, (builder) => {
         payload.message
       );
 
-    return [ ...state, payload ];
+    const newState = [ ...state, payload ];
+    console.log(newState);
+    return newState;
   });
 });
