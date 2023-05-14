@@ -1,7 +1,7 @@
 import { APP_NAME } from "@env";
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
-import { setError } from "../reducers/ScreenNotificationReducer";
+import { showAlert } from "../reducers/ScreenNotificationReducer";
 
 const Home = (props) => {
   const error = {
@@ -11,7 +11,7 @@ const Home = (props) => {
     useNotifications: true,
   };
 
-  props.setError(error);
+  props.showAlert(error);
 
   return (
     <View>
@@ -21,7 +21,7 @@ const Home = (props) => {
 };
 
 const mapDispatchToProps = {
-  setError
+  showAlert
 };
 
 export default connect(null, mapDispatchToProps)(Home);

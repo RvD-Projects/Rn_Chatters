@@ -8,11 +8,11 @@ const initialState = {
   useAppNotification: false,
 };
 
-export const setError = (error) => (dispatch) =>
-  dispatch(setErrorAction(error));
+export const showAlert = (error) => (dispatch) =>
+  dispatch(setAlertAction(error));
 
-const setErrorAction = createAction(
-  "screenNotification/setError",
+const setAlertAction = createAction(
+  "screenNotification/showAlert",
   function prepare(newState) {
     return {
       payload: { ...newState },
@@ -23,7 +23,7 @@ const setErrorAction = createAction(
 export const ScreenNotificationReducer = createReducer(
   initialState,
   (builder) => {
-    builder.addCase(setErrorAction, (state, action) => {
+    builder.addCase(setAlertAction, (state, action) => {
       const { isOpen, type, title, msg, useAppNotification } = action.payload;
       return {
         ...state,
