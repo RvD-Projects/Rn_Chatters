@@ -6,8 +6,10 @@
   "scripts": {
     "tools": "react-devtools",
     "android": "react-native run-android",
+    "android-prod": "react-native run-android --mode release",
     "windows": "react-native run-windows",
     "ios": "react-native run-ios",
+    "ios-prod": "react-native run-ios --configuration Release",
     "lint": "eslint .",
     "start": "react-native start --reset-cache",
     "test": "jest",
@@ -17,8 +19,8 @@
     "prerelease": "react-native-asset",
     "release-windows": "echo USE THE SOLUTION FOR PUBLISHING",
     "release": "npm run release-android && npm run release-ios && npm run release-windows",
-    "ios-prod": "echo USE XCODE AD PUBLISH AN ARCHIVE",
-    "android-prod": "cd ./android && gradlew bundleRelease && gradlew assembleRelease && cd../",
+    "release-ios": "echo USE XCODE AD PUBLISH AN ARCHIVE",
+    "release-android": "cd ./android && gradlew bundleRelease && gradlew assembleRelease && cd../",
     "sign-android": "cd android/app && keytool -genkeypair -v -storetype PKCS12 -keystore production.keystore -alias production -keyalg RSA -keysize 2048 -validity 10000 && cd ../../"
   },
   "dependencies": {
