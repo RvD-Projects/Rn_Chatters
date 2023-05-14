@@ -2,7 +2,8 @@ import { createReducer, createAction } from "@reduxjs/toolkit";
 import { AlertHelper } from "../helpers/Notifications/AlertHelpers";
 import { capitalizeAll } from "../helpers";
 
-const initialState = {
+const initialState = [];
+const initialnotificationState = {
   isOpen: false,
   type: null,
   title: null,
@@ -33,6 +34,6 @@ export const NotificationsReducer = createReducer(initialState, (builder) => {
         payload.message
       );
 
-    return { ...state, ...payload };
+    return [ ...state, payload ];
   });
 });
