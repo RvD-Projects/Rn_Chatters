@@ -1,10 +1,11 @@
 import { View } from "react-native";
 import { connect } from "react-redux";
-import { setError } from "../reducers/ScreenNotificationReducer";
+import { showAlert } from "../reducers/ScreenNotificationReducer";
 import { useNavigation } from "@react-navigation/native";
 import { Input, Icon, Button } from "@rneui/base";
 import { createRef, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
+import isEmail from "validator/lib/isEmail";
 
 const Login = (props) => {
   const navigation = useNavigation;
@@ -28,20 +29,27 @@ const Login = (props) => {
       return;
     }
 
-    console.log("Form values", [email, password]);
     const notValid = validateForm(e, true);
     if (notValid) {
       return;
     }
 
     // hanlde-post
+    const succes = {
+      type: "info",
+      isOpen: true,
+      msg: "Well looks like you've made it work, good job.",
+      useNotifications: true,
+    };
+  
+    props.showAlert(succes);
   };
 
   const validateEmail = (value, showError = false) => {
     setEmailMsg("");
     let asError = false;
 
-    if (value?.length < 3) {
+    if (!isEmail(value ?? "")) {
       showError && mailRef.current.shake();
       showError && setEmailMsg(emailErrorMsg);
       asError = true;
@@ -64,7 +72,8 @@ const Login = (props) => {
   };
 
   const validateForm = (e, showError = false) => {
-    const asError = validateEmail(email, showError) || validatePassword(password, showError);
+    const asError =
+      validateEmail(email, showError) || validatePassword(password, showError);
     setFormAsError(asError);
     return asError;
   };
@@ -118,8 +127,7 @@ const Login = (props) => {
   }, []);
 
   useEffect(() => {
-    const notValid = validateForm(null, false);
-    console.log("notValid", notValid);
+    validateForm(null, false);
   }, [email, password]);
 
   const render = () => {
@@ -157,14 +165,8 @@ Login.propTypes = {
   password: PropTypes.string,
 };
 
-function mapStateToProps(state) {
-  return {};
-}
+const mapDispatchToProps = {
+  showAlert
+};
 
-function mapDispatchToProps() {
-  return {
-    setError,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);
