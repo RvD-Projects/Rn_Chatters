@@ -1,5 +1,5 @@
 import { createReducer, createAction } from "@reduxjs/toolkit";
-import { getObject, storeObject } from "../helpers/Storages/AsyncStoreHelper";
+import { getObject, storeObject, updateObject } from "../helpers/Storages/AsyncStoreHelper";
 
 const initialState = {
   id: null,
@@ -41,7 +41,7 @@ export const UserReducer = createReducer(initialState, (builder) => {
   builder.addCase(updateStateUserAction, (state, action) => {
     const { payload } = action;
     const newState = { ...state, ...payload };
-    storeObject('user', newState);
+    updateObject('user', newState);
     return newState;
   });
 });

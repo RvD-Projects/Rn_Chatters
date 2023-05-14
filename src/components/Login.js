@@ -17,7 +17,7 @@ const Login = (props) => {
   const passRef = createRef();
 
   const [formAsError, setFormAsError] = useState(true);
-  const [email, setEmail] = useState(props.email);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
@@ -29,12 +29,12 @@ const Login = (props) => {
 
   const init = async () => {
     const user = await getObject('user');
-    setEmail(user.email);
+    setEmail(user?.email);
     setIsReady(true);
   }
 
   const handleSubmit = (e) => {
-    // Auto-Login or default button disabled
+    // Auto-Login and default button disabled
     if (!e) {
       return;
     }
@@ -198,15 +198,9 @@ Login.propTypes = {
   password: PropTypes.string,
 };
 
-const mapstateToProps = (state) => {
-  return {
-    email: state.UserReducer.email,
-  };
-};
-
 const mapDispatchToProps = {
   sendNotification,
   updateStateUser,
 };
 
-export default connect(mapstateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);
