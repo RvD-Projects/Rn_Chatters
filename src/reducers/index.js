@@ -1,10 +1,11 @@
+import { UserReducer } from "./UserReducer";
 import { CounterReducer } from "./CounterReducer";
-import { ScreenNotificationReducer } from "./ScreenNotificationReducer";
+import { NotificationsReducer } from "./NotificationsReducer";
 
 const reducers = {
-  counterReducer: CounterReducer,
-  screenNotificationReducer: ScreenNotificationReducer,
+  UserReducer,
+  CounterReducer,
+  NotificationsReducer,
 };
-
 
 export default reducers;

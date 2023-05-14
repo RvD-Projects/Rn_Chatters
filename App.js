@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Provider } from "react-redux";
 import { store } from "./src/store/store";
-import AppScreenNotification from "./src/components/AppScreenNotification";
 import RootNavigation from "./src/components/navigators/RootStack";
+import AppScreenNotification from "./src/components/AppScreenNotification";
 
 function App() {
   return (

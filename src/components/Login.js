@@ -1,11 +1,12 @@
 import { View } from "react-native";
-import { connect } from "react-redux";
-import { showAlert } from "../reducers/ScreenNotificationReducer";
+import { connect, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Input, Icon, Button } from "@rneui/base";
-import { createRef, useEffect, useMemo, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import isEmail from "validator/lib/isEmail";
+import { updateStateUser } from "../reducers/UserReducer";
+import { sendNotification } from "../reducers/NotificationsReducer";
 
 const Login = (props) => {
   const navigation = useNavigation;
@@ -16,12 +17,16 @@ const Login = (props) => {
   const [formAsError, setFormAsError] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [emailMsg, setEmailMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
 
   const emailErrorMsg = "Please enter a valid email.";
   const passErrorMsg = "Password must be at least 8 characters.";
+
+  const user = {
+    email: useSelector((state) => state.UserReducer.email),
+  };
 
   const handleSubmit = (e) => {
     // Auto-Login or default button disabled
@@ -35,14 +40,25 @@ const Login = (props) => {
     }
 
     // hanlde-post
-    const succes = {
-      type: "info",
-      isOpen: true,
-      msg: "Well looks like you've made it work, good job.",
-      useNotifications: true,
+    doLogin();
+  };
+
+  const doLogin = async () => {
+    setIsPosting(true);
+
+    props.updateStateUser({
+      email,
+    });
+
+    setTimeout(setIsPosting, 3000);
+
+    const notification = {
+      type: "success",
+      message: `Well looks like you've made it work, good job ${email}.`,
+      showOnScreen: true,
     };
-  
-    props.showAlert(succes);
+
+    props.sendNotification(notification);
   };
 
   const validateEmail = (value, showError = false) => {
@@ -136,6 +152,7 @@ const Login = (props) => {
         {RenderFields()}
 
         <Button
+          loading={isPosting}
           disabled={formAsError}
           title="Login"
           titleProps={{}}
@@ -165,8 +182,13 @@ Login.propTypes = {
   password: PropTypes.string,
 };
 
-const mapDispatchToProps = {
-  showAlert
+const mapstateToProps = (state) => {
+  return {};
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = {
+  sendNotification,
+  updateStateUser,
+};
+
+export default connect(mapstateToProps, mapDispatchToProps)(Login);
