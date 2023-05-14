@@ -37,7 +37,6 @@ export const NotificationsReducer = createReducer(initialState, (builder) => {
       );
 
     const newState = [ ...state, payload ];
-    console.log(newState);
     return newState;
   });
 });

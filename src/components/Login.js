@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { connect, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Input, Icon, Button } from "@rneui/base";
@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import isEmail from "validator/lib/isEmail";
 import { updateStateUser } from "../reducers/UserReducer";
 import { sendNotification } from "../reducers/NotificationsReducer";
+import { getLoader } from "../helpers";
+import { getObject } from "../helpers/Storages/AsyncStoreHelper";
 
 const Login = (props) => {
   const navigation = useNavigation;
@@ -15,18 +17,21 @@ const Login = (props) => {
   const passRef = createRef();
 
   const [formAsError, setFormAsError] = useState(true);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(props.email);
   const [password, setPassword] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
   const [isPosting, setIsPosting] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   const emailErrorMsg = "Please enter a valid email.";
   const passErrorMsg = "Password must be at least 8 characters.";
 
-  const user = {
-    email: useSelector((state) => state.UserReducer.email),
-  };
+  const init = async () => {
+    const user = await getObject('user');
+    setEmail(user.email);
+    setIsReady(true);
+  }
 
   const handleSubmit = (e) => {
     // Auto-Login or default button disabled
@@ -44,7 +49,7 @@ const Login = (props) => {
   };
 
   const doLogin = async () => {
-    props.updateStateUser({email});
+    props.updateStateUser({ email });
     setIsPosting(true);
 
     props.sendNotification({
@@ -53,7 +58,7 @@ const Login = (props) => {
       message: `${email}`,
       showOnScreen: false,
     });
-    
+
     // response-mock
     setTimeout(() => {
       props.sendNotification({
@@ -64,7 +69,6 @@ const Login = (props) => {
       });
       setIsPosting(false);
     }, 3000);
-
   };
 
   const validateEmail = (value, showError = false) => {
@@ -105,6 +109,7 @@ const Login = (props) => {
       <View>
         <Input
           ref={mailRef}
+          value={email?.toLowerCase()}
           label="Email"
           placeholder=""
           containerStyle={{}}
@@ -145,6 +150,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
+    init();
     handleSubmit();
   }, []);
 
@@ -153,6 +159,10 @@ const Login = (props) => {
   }, [email, password]);
 
   const render = () => {
+    if (!isReady) {
+      return getLoader();
+    }
+
     return (
       <View style={{ marginVertical: "25%" }}>
         {RenderFields()}
@@ -189,7 +199,9 @@ Login.propTypes = {
 };
 
 const mapstateToProps = (state) => {
-  return {};
+  return {
+    email: state.UserReducer.email,
+  };
 };
 
 const mapDispatchToProps = {
