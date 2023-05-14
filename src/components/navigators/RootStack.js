@@ -12,35 +12,36 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
-function Rootdrawer() {
+function HomeDrawer() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={RootsTabs} />
-      <Drawer.Screen name="Profile" component={RootsTabs} />
-      <Drawer.Screen name="Settings" component={RootsTabs} />
-      <Drawer.Screen name="Notifications" component={RootsTabs} />
+      <Drawer.Screen
+        options={{ title: "Home" }}
+        name="HomeTabs"
+        component={HomeTabs}
+      />
     </Drawer.Navigator>
   );
 }
 
-function RootsTabs() {
+function HomeTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="Login"
-        component={Login}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="login" size={24} color="#900" />
-          ),
-        }}
-      />
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" size={24} color="#900" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="setting" size={24} color="#900" />
           ),
         }}
       />
@@ -52,8 +53,19 @@ function RootStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={Rootdrawer}
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="HomeDrawer"
+        component={HomeDrawer}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

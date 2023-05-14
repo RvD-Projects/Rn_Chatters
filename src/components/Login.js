@@ -1,5 +1,5 @@
-import { View, ActivityIndicator } from "react-native";
-import { connect, useSelector } from "react-redux";
+import { View } from "react-native";
+import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Input, Icon, Button } from "@rneui/base";
 import { createRef, useEffect, useState } from "react";
@@ -11,7 +11,7 @@ import { getLoader } from "../helpers";
 import { getObject } from "../helpers/Storages/AsyncStoreHelper";
 
 const Login = (props) => {
-  const navigation = useNavigation;
+  const navigation = useNavigation();
 
   const mailRef = createRef();
   const passRef = createRef();
@@ -68,6 +68,7 @@ const Login = (props) => {
         showOnScreen: false,
       });
       setIsPosting(false);
+      navigation.navigate('HomeDrawer');
     }, 3000);
   };
 
