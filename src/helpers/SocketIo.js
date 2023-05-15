@@ -44,8 +44,7 @@ const SocketIo = (props) => {
 
   function onSession(event, ...args) {
     console.info("onSession:");
-    console.info(event, "\n", args, "\r --------------------------------");
-
+		console.info(event, "\n", args, "\r --------------------------------");
     props.updateStateUser(event);
   }
 
@@ -62,9 +61,11 @@ const SocketIo = (props) => {
   function onUsers(users, ...args) {
     console.info("onUsers:");
 
+		let self = null;
     users.forEach((user) => {
-      user.self = user.userID === socket.id;
-      //initReactiveProperties(user);
+      if(user.self = user.userID === socket.id) {
+				self = user;
+			}
     });
     // put the current user first, and then sort by username
     users = users.sort((a, b) => {
@@ -73,8 +74,9 @@ const SocketIo = (props) => {
       if (a.username < b.username) return -1;
       return a.username > b.username ? 1 : 0;
     });
-
+		
     console.info(users, "\n", args, "\r --------------------------------");
+		self && props.updateStateUser(self);
   }
 
   function onPrivateMessage(event, ...args) {
