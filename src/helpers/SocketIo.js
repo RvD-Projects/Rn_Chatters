@@ -10,6 +10,33 @@ const SocketIo = (props) => {
   const socket = io(URL, { autoConnect: false });
   socket.auth = { email: "webdevteam@rvdprojects.com", password: "plainText" };
 
+	const listeners = [
+    "connect",
+    "session",
+    "userConnected",
+    "onUserDisconnected",
+    "users",
+    "privateMessage",
+    "disconnect",
+  ];
+
+  socket.on("connect", onConnect);
+  socket.on("session", onSession);
+  socket.on("userConnected", onUserConnected);
+  socket.on("userDisconnected", onUserDisconnected);
+  socket.on("users", onUsers);
+  socket.on("privateMessage", onPrivateMessage);
+  socket.on("disconnect", onDisconnect);
+
+  socket.onAny((event, ...args) => {
+    if (!listeners.includes(event)) {
+      console.error("!!!!!!!!!!!!!!!!!! onAny: !!!!!!!!!!!!!!!!!!");
+      console.error(event, "\n", args, "\r --------------------------------");
+    }
+  });
+
+  socket.connect();
+
   function onConnect(event, ...args) {
     console.warn("Socket-Connection:", URL);
     console.info(event, "\n", args, "\r --------------------------------");
@@ -59,33 +86,6 @@ const SocketIo = (props) => {
     console.info("onDisconnect:");
     console.error(event, "\n", args, "\r --------------------------------");
   }
-
-  const listeners = [
-    "connect",
-    "session",
-    "userConnected",
-    "onUserDisconnected",
-    "users",
-    "privateMessage",
-    "disconnect",
-  ];
-
-  socket.on("connect", onConnect);
-  socket.on("session", onSession);
-  socket.on("userConnected", onUserConnected);
-  socket.on("userDisconnected", onUserDisconnected);
-  socket.on("users", onUsers);
-  socket.on("privateMessage", onPrivateMessage);
-  socket.on("disconnect", onDisconnect);
-
-  socket.onAny((event, ...args) => {
-    if (!listeners.includes(event)) {
-      console.error("!!!!!!!!!!!!!!!!!! onAny: !!!!!!!!!!!!!!!!!!");
-      console.error(event, "\n", args, "\r --------------------------------");
-    }
-  });
-
-  socket.connect();
 
   return;
 };
