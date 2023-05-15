@@ -47,6 +47,7 @@
     "react-native-websocket": "^1.0.2",
     "react-native-windows": "0.71.10",
     "react-redux": "^8.0.5",
+    "socket.io-client": "^4.6.1",
     "validator": "^13.9.0"
   },
   "devDependencies": {

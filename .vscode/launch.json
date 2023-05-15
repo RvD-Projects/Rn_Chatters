@@ -30,6 +30,6 @@
             "type": "reactnative",
             "request": "launch",
             "platform": "ios"
-          }
+        }
     ]
 }

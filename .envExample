@@ -1,3 +1,2 @@
 APP_NAME=Rn Starter
-API_URL=https://myapi.com
-GOOGLE_MAPS_API_KEY=abcdefgh
+SESSION_SERVICE_URL=ws://127.0.0.1:3333
